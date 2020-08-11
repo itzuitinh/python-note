@@ -1,0 +1,36 @@
+{% extends "pages/base.html" %}
+
+{% load static %}
+{% block content %}
+<section id="nav">
+    <div class="container mt-5">
+      <div class="col-lg-8 mx-auto">
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-dismissible fade show alert-{{ message.tags }}"{% endif %}>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="d-inline">
+          <div class="clearfix">
+            <div class="float-left">
+              <a class="btn btn-primary js-create-object" style="width: 200%" href="{%url 'create'%}">Create</a>
+            </div>
+            <div class="float-right">
+              <form action="{% url 'search' %}" method="get">
+                <div class="input-group">
+                  <input type="text" name="q" class="form-control" placeholder="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                  </div>
+                </div>
+              </form> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
